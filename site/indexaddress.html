@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<title>Specific Address</title>
+	<meta charset="utf-8">
+	<meta name = "format-detection" content = "telephone=no" />
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="css/grid.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/map.css">
+
+
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery-migrate-1.2.1.js"></script>
+	<script src="js/jquery.stellar.js"></script>
+	<script src="js/script.js"></script>
+	<!--[if (gt IE 9)|!(IE)]><!-->
+	<script src="js/wow.js"></script>
+	<script>
+		$(document).ready(function () {
+			if ($('html').hasClass('desktop')) {
+				new WOW().init();
+			}
+		});
+	</script>
+	<!--<![endif]-->
+	<!--[if lt IE 8]>
+	<div style=' clear: both; text-align:center; position: relative;'>
+	 <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+		 <img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+	 </a>
+	</div>
+	<![endif]-->
+	<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
+	<![endif]-->
+	</head>
+<body class="index-1">
+<!--==============================header=================================-->
+<header id="header">
+	<div id="stuck_container">
+		<div class="container">
+			<div class="row">
+				<div class="grid_12">
+					<h1><a href="index.html">Build-Up</a><span>your advertising agency</span></h1>
+					<nav>
+						<ul class="sf-menu">
+							<li><a href="index.html">Home</a>
+								<ul>
+									<li><a href="index-1.html">About</a></li>
+									<li><a href="index-2.html">Projects</a>
+										<ul>
+											<li><a href="#">Lorem ipsum</a></li>
+											<li><a href="#">Lorem ipsum</a></li>
+											<li><a href="#">Lorem ipsum</a></li>
+										</ul>
+									</li>
+									<li><a href="index-3.html">Services</a></li>
+									<li><a href="#">index-4.html</a></li>
+								</ul>
+							</li>
+							<li class="current"><a href="index-1.html">About</a></li>
+							<li><a href="index-2.html">Projects</a></li>
+							<li><a href="index-3.html">Services</a></li>
+							<li><a href="index-4.html">Contacts</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<!--=======content================================-->
+
+<section id="content">
+	<div>
+		<div id="map"></div>
+		<script>
+		  function initMap() {
+			// Create a map object and specify the DOM element for display.
+			var map = new google.maps.Map(document.getElementById('map'), {
+			  center: {lat: 37.551798, lng: -122.009931},
+			  // Set mapTypeId to SATELLITE in order
+			  // to activate satellite imagery.
+			  mapTypeId: 'satellite',
+			  zoom: 30
+			});
+		  }
+
+		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFZTB9CIHh5Sile-jx5czOk6nyBdZxA7g&callback=initMap"
+			async defer></script>
+		<div style="height:43vw; text-align:left; width:40%; float:right;background:#fff;">
+			<div style="margin:50px 40px;">
+			<h3 style="text-align:left;color:#444;">4479 Maybeck Ter,</h3>
+			<h3 style="text-align:left;color:#444;">Fremont, CA 94536</h3>
+			<p style="font: 20px/30px 'Open Sans', sans-serif;">4 beds 3.5 baths 2,007 sqft</p>
+			<p style="font: 20px/30px 'Open Sans', sans-serif;">Estimated value: $1,003,102</p>
+			</br></br>
+			<p style="font: 20px/30px 'Open Sans', sans-serif;">4514 138th Ave SE, Bellevue, WA is a single family home that contains 3,320 sq ft and was built in 1962. It contains 4 bedrooms and 2.5 bathrooms. This home last sold for $1,063,500 in December 2005. The Zestimate for this house is $1,542,119, which has increased by $4,665 in the last 30 days.</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!--=======footer=================================-->
+<footer id="footer">
+	<div class="container">
+		<div class="row">
+			<div class="grid_12 copyright">
+				<h2><span>Follow Us</span></h2>
+				<a href="#" class="btn bd-ra"><span class="fa fa-facebook"></span></a>
+				<a href="#" class="btn bd-ra"><span class="fa fa-tumblr"></span></a>
+				<a href="#" class="btn bd-ra"><span class="fa fa-google-plus"></span></a>
+				<pre>© <span id="copyright-year"></span> |  Privacy Policy</pre>
+			</div>
+		</div>
+	</div>
+</footer>
+<script>
+	$(document).ready(function() { 
+			if ($('html').hasClass('desktop')) {
+				$.stellar({
+					horizontalScrolling: false,
+					verticalOffset: 20,
+					resposive: true,
+					hideDistantElements: true,
+				});
+			}
+		});	
+</script>
+</body>
+</html>
