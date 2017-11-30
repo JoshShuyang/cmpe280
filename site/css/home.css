@@ -32,6 +32,7 @@ h2 span:before {
 }
 
 .search-option {
+    font: 20px/40px 'Open Sans', sans-serif;
     height: 50px;
     text-align: center;
     vertical-align: middle;
@@ -45,6 +46,10 @@ h2 span:before {
 
 .search-option:hover {
     cursor: pointer;
+    background-color: rgba(70, 166, 228, 0.75);
+}
+
+.cur-option {
     background-color:rgba(0,116,228,.75);
 }
 
@@ -52,4 +57,103 @@ h2 span:before {
     position: fixed;
     z-index: -2;
     top: 0px;
+}
+
+.search {
+    width: 100%;
+    position: relative
+}
+
+.searchTerm {
+    float: left;
+    width: 94%;
+    border: 3px solid rgba(0,116,228,.75);
+    padding: 5px;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    color: #444;
+    font-size: 14px;
+    margin-left: -28px;
+}
+
+.searchTerm:focus{
+    color: #444;
+}
+
+.searchButton {
+    position: absolute;
+    width: 60px;
+    height: 56px;
+    border: 1px solid rgba(0,116,228,.75);
+    background: rgba(0,116,228, 1);
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.wrap{
+    width: 355px;
+    display: table;
+    margin: 0 auto;
+}
+
+.search2 {
+    width: 355px;
+    display: table;
+    margin: 0 auto;
+    position: relative
+}
+
+.street {
+    float: left;
+    width: 94%;
+    border: 3px solid rgba(0,116,228,.75);
+    padding: 5px;
+    height: 25px;
+    border-radius: 5px;
+    outline: none;
+    color: #444;
+    font-size: 14px;
+}
+
+.city {
+    float: left;
+    width: 50%;
+    border: 3px solid rgba(0,116,228,.75);
+    padding: 5px;
+    height: 25px;
+    border-radius: 5px;
+    outline: none;
+    color: #444;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.state {
+    float: left;
+    width: 33%;
+    border: 3px solid rgba(0,116,228,.75);
+    padding: 5px;
+    height: 41px;
+    border-radius: 5px;
+    outline: none;
+    color: #444;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.search2Button {
+    margin-top: 20px;
+    width: 40px;
+    height: 41px;
+    border: 1px solid rgba(0,116,228,.75);
+    background: rgba(0,116,228, 1);
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
 }
