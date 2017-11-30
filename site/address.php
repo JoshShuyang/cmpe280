@@ -1,3 +1,58 @@
+<?php
+
+	if(!isset($_REQUEST["address"]) or !isset($_REQUEST["city"]) or !isset($_REQUEST["state"])){
+		//exit("error");
+	} else {
+		$address = str_replace(" ","+",$_REQUEST["address"]);
+		
+		$city = str_replace(" ","+",$_REQUEST["city"]);
+		$state = str_replace(" ","+",$_REQUEST["state"]);
+	}
+	$map_url = "http://www.zillow.com/webservice/GetDeepSearchResults.htm?zws-id=X1-ZWz1g4kx4e6g3v_4u6i7&address=$address&citystatezip=$city+$state";
+	if (($response_xml_data = file_get_contents($map_url))===false){
+		//exit("error");
+	} else {
+		libxml_use_internal_errors(true);
+		$data = simplexml_load_string($response_xml_data);
+		if (!$data) {
+			//exit("error");
+		} else if($data->message->code==0){
+			$result = $data->response->results->result;
+			$address = $result->address;
+			
+			$street = $address->street;
+			$zipcode = $address->zipcode;
+			$city = $address->city;
+			$state = $address->state;
+			$latitude = $address->latitude;
+			$longitude = $address->longitude;
+			
+			$evaluation = $result->zestimate->amount;
+			$evaluationChanged = $result->zestimate->valueChange;
+			$evaluationLow = $result->zestimate->valuationRange->low;
+			$evaluationHigh = $result->zestimate->valuationRange->high;
+			
+			$useCode = $result->useCode;
+			$taxAssessmentYear = $result->taxAssessmentYear;
+			$taxAssessment = $result->taxAssessment;
+			$yearBuilt = $result->yearBuilt;
+			$lotSizeSqFt = $result->lotSizeSqFt;
+			$finishedSqFt = $result->finishedSqFt;
+			$bathrooms = $result->bathrooms;
+			$bedrooms = $result->bedrooms;
+			$totalRooms = $result->totalRooms;
+			$lastSoldDate = $result->lastSoldDate;
+			$lastSoldPrice = $result->lastSoldPrice;
+			
+			//echo json_encode($return);
+		} else {
+			//exit("error");
+		}
+	}
+	
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -81,7 +136,7 @@
 		  function initMap() {
 			// Create a map object and specify the DOM element for display.
 			var map = new google.maps.Map(document.getElementById('map'), {
-			  center: {lat: 37.551798, lng: -122.009931},
+			  center: {lat: <?php echo $latitude; ?>, lng: <?php echo $longitude; ?>},
 			  // Set mapTypeId to SATELLITE in order
 			  // to activate satellite imagery.
 			  mapTypeId: 'satellite',
@@ -94,12 +149,14 @@
 			async defer></script>
 		<div style="height:43vw; text-align:left; width:40%; float:right;background:#fff;">
 			<div style="margin:50px 40px;">
-			<h3 style="text-align:left;color:#444;">4479 Maybeck Ter,</h3>
-			<h3 style="text-align:left;color:#444;">Fremont, CA 94536</h3>
-			<p style="font: 20px/30px 'Open Sans', sans-serif;">4 beds 3.5 baths 2,007 sqft</p>
-			<p style="font: 20px/30px 'Open Sans', sans-serif;">Estimated value: $1,003,102</p>
+			<h3 style="text-align:left;color:#444;"><?php echo $street;?>,</h3>
+			<h3 style="text-align:left;color:#444;"><?php echo $city.", ".$state." ".$zipcode;?></h3>
+			<p style="font: 20px/30px 'Open Sans', sans-serif;"><?php echo $bedrooms." beds ".$bathrooms." baths ".$finishedSqFt." sqft";?></p>
+			<p style="font: 20px/30px 'Open Sans', sans-serif;">Estimated value: $<?php echo $evaluation;?></p>
 			</br></br>
-			<p style="font: 20px/30px 'Open Sans', sans-serif;">4514 138th Ave SE, Bellevue, WA is a single family home that contains 3,320 sq ft and was built in 1962. It contains 4 bedrooms and 2.5 bathrooms. This home last sold for $1,063,500 in December 2005. The Zestimate for this house is $1,542,119, which has increased by $4,665 in the last 30 days.</p>
+			<p style="font: 20px/30px 'Open Sans', sans-serif;">
+			<?php echo "$street, $city, $state is a $useCode home that contains $finishedSqFt sq ft and was built in $yearBuilt. It contains $bedrooms bedrooms and $bathrooms bathrooms. This home last sold for $".$lastSoldPrice." in $lastSoldDate. The Zestimate for this house is $".$evaluation.", which has changed by $$evaluationChanged in the last 30 days.";?>
+			</p>
 			</div>
 		</div>
 	</div>
