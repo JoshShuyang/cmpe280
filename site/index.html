@@ -51,25 +51,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="grid_12">
-					<h1><a href="index.html">Build-Up</a><span>your advertising agency</span></h1>
+					<h1><a href="index.html">Firetnt</a><span>Your Housing Manager</span></h1>
 					<nav>
 						<ul class="sf-menu">
-							<li class="current"><a href="index.html">Home</a>
-								<ul>
-									<li><a href="#">Lorem ipsum</a></li>
-									<li><a href="#">Lorem ipsum</a>
-										<ul>
-											<li><a href="#">Lorem ipsum</a></li>
-											<li><a href="#">Lorem ipsum</a></li>
-											<li><a href="#">Lorem ipsum</a></li>
-										</ul>
-									</li>
-									<li><a href="#">Lorem ipsum</a></li>
-								</ul>
-							</li>
+							<li class="current"><a href="index.html">Home</a></li>
 							<li><a href="index-1.html">About</a></li>
-							<li><a href="index-2.html">Projects</a></li>
-							<li><a href="index-3.html">Services</a></li>
 							<li><a href="index-4.html">Contacts</a></li>
 						</ul>
 					</nav>
@@ -90,17 +76,17 @@
 				</header>
 				<div style="display: table;margin: 0 auto;">
 					<div class="search-option" ng-class="{'cur-option' : sa}" ng-click="goSearchAve()">
-						Buy
+						Price History
 					</div>
 					<div class="search-option" ng-class="{'cur-option' : ss}" ng-click="goSearchSpec()">
-						Rent
+						Current Price
 					</div>
 				</div>
 				<div style="height: 30px;"></div>
 				<div>
 					<div ng-show="sa" class="wrap">
 						<div class="search">
-							<input type="text" class="searchTerm" placeholder="What are you looking for?">
+							<input type="text" class="searchTerm" placeholder="Input zipcode or city to acquire price history">
 							<button type="submit" class="searchButton">
 								<i class="fa fa-search"></i>
 							</button>
@@ -287,7 +273,7 @@
             { name: 'WYOMING', abbreviation: 'WY' }
 		];
         $scope.ss = false;
-        $scope.sa = false;
+        $scope.sa = true;
 
 		$scope.goSearchAve = function () {
             $scope.sa = true;
