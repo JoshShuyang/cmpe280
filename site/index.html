@@ -17,8 +17,6 @@
 	<script src="js/owl.carousel.js"></script>
 	<script src="js/jquery.stellar.js"></script>
 	<script src="js/script.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
 
 		<!--[if (gt IE 9)|!(IE)]><!-->
@@ -86,22 +84,22 @@
 				<div>
 					<div ng-show="sa" class="wrap">
 						<div class="search">
-							<input type="text" class="searchTerm" placeholder="Input zipcode or city to acquire price history">
-							<button type="submit" class="searchButton">
+							<input type="text" class="searchTerm" ng-model="area" placeholder="Input zipcode or city to acquire price history">
+							<button type="submit" class="searchButton" ng-click="searchAve()">
 								<i class="fa fa-search"></i>
 							</button>
 						</div>
 					</div>
 
 					<div ng-show="ss" class="search2">
-						<input type="text" class="street" placeholder="Street Address">
-						<input type="text" class="city" placeholder="City">
+						<input type="text" class="street" ng-model="searchSpec.address" placeholder="Street Address">
+						<input type="text" class="city" ng-model="searchSpec.city" placeholder="City">
 						<select class="state"
 								ng-options="state as state.abbreviation for state in states"
 								ng-model="searchSpec.state">
 							<option value="" disabled selected>State</option>
 						</select>
-						<button type="submit" class="search2Button">
+						<button type="submit" class="search2Button" ng-click="searchSpec()">
 							<i class="fa fa-search"></i>
 						</button>
 					</div>
@@ -284,6 +282,51 @@
             $scope.ss = true;
             $scope.sa = false;
         };
+
+        $scope.searchAve = function () {
+            if (!$scope.area) {
+                alert("Please input content before search");
+			}
+			else  {
+                var varList = [];
+                var varStr = "";
+                var input = parseInt($scope.area);
+                if (input.toString() === "NaN") {
+                    varList = $scope.area.split(/[ ]+/);
+
+                    varStr = varList[0];
+
+                    for (var i = 1; i < varList.length; i++) {
+                        varStr += "%20" + varList[i];
+					}
+
+                    $.post(
+                        "http://shuoranzhang.com/cmpe280/finalProject/api/getHomeValueByAttri.php?city=" + varStr,
+						function( data ) {
+							if (data === "error"){
+							    alert("Cannot find results of this input data");
+							}
+							else
+                            	window.location = "http://shuoranzhang.com/cmpe280/finalProject/priceHistory.php?city=" + varStr;
+                    });
+				}
+				else {
+                    $.post("http://shuoranzhang.com/cmpe280/finalProject/api/getHomeValueByAttri.php?zipcode=" + $scope.area, function (data) {
+                        if (data === "error"){
+                            alert("Cannot find results of this input data");
+                        }
+                        else
+                            window.location = "http://shuoranzhang.com/cmpe280/finalProject/priceHistory.php?zipcode=" + $scope.area;
+                    });
+                }
+			}
+		};
+
+        $scope.searchSpec = function () {
+			if (!$scope.searchSpec.address || !searchSpec.city || !searchSpec.state) {
+
+			}
+		};
     });
 </script>
 <script>
