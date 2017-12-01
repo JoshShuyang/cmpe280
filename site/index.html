@@ -92,11 +92,11 @@
 					</div>
 
 					<div ng-show="ss" class="search2">
-						<input type="text" class="street" ng-model="searchSpec.address" placeholder="Street Address">
-						<input type="text" class="city" ng-model="searchSpec.city" placeholder="City">
+						<input type="text" class="street" ng-model="address" placeholder="Street Address">
+						<input type="text" class="city" ng-model="city" placeholder="City">
 						<select class="state"
 								ng-options="state as state.abbreviation for state in states"
-								ng-model="searchSpec.state">
+								ng-model="state">
 							<option value="" disabled selected>State</option>
 						</select>
 						<button type="submit" class="search2Button" ng-click="searchSpec()">
@@ -323,8 +323,36 @@
 		};
 
         $scope.searchSpec = function () {
-			if (!$scope.searchSpec.address || !searchSpec.city || !searchSpec.state) {
+			if (!$scope.address || !$scope.city || !$scope.state) {
+                alert("Please finish inputting content before search");
+			}
+			else {
+			    //http://shuoranzhang.com/cmpe280/finalProject/api/homeValueCheckout.php?address=4479+Maybeck+ter&city=fremont&state=ca
+				var street = "", city = "", state = $scope.state.abbreviation;
 
+                var streetWordList = $scope.address.split(/[ ]+/);
+                var cityWordList = $scope.city.split(/[ ]+/);
+                street = streetWordList[0];
+                city = cityWordList[0];
+
+                for (var i = 1; i < streetWordList.length; i++) {
+                    street += "+" + streetWordList[i];
+                }
+
+                for (i = 1; i < cityWordList.length; i++) {
+                    city += "+" + cityWordList[i];
+                }
+
+                $.post("http://shuoranzhang.com/cmpe280/finalProject/api/homeValueCheckout.php?address="
+					+ street + "&city=" + city + "&state=" + state, function( data ) {
+					if (data === "error"){
+						alert("Cannot find results of this input data");
+					}
+					else
+					    //http://shuoranzhang.com/cmpe280/finalProject/address.php?address=4479+maybeck+ter&city=fremont&state=ca
+						window.location = "http://shuoranzhang.com/cmpe280/finalProject/address.php?address="
+							+ street + "&city=" + city + "&state=" + state;
+				});
 			}
 		};
     });
