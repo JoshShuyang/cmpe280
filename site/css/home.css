@@ -96,13 +96,13 @@ h2 span:before {
 }
 
 .wrap{
-    width: 355px;
+    width: 555px;
     display: table;
     margin: 0 auto;
 }
 
 .search2 {
-    width: 355px;
+    width: 580px;
     display: table;
     margin: 0 auto;
     position: relative
@@ -110,7 +110,7 @@ h2 span:before {
 
 .street {
     float: left;
-    width: 94%;
+    width: 97%;
     border: 3px solid rgba(0,116,228,.75);
     padding: 5px;
     height: 25px;
@@ -148,7 +148,7 @@ h2 span:before {
 
 .search2Button {
     margin-top: 20px;
-    width: 40px;
+    width: 80px;
     height: 41px;
     border: 1px solid rgba(0,116,228,.75);
     background: rgba(0,116,228, 1);
@@ -158,3 +158,10 @@ h2 span:before {
     cursor: pointer;
     font-size: 20px;
 }
+
+/*@media (max-device-aspect-ratio: 18/10) {
+    .background-video {
+        width: auto !important;
+        height: 100%;
+    }
+}*/
