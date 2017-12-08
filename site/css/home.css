@@ -177,7 +177,7 @@ h2 span:before {
     }
 }
 
-/*@media (max-device-aspect-ratio: 18/10) {
+/*@media only screen and (max-device-aspect-ratio: 18/10) {
     .background-video {
         width: auto !important;
         height: 100%;
