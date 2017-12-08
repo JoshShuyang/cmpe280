@@ -87,7 +87,7 @@
 				<div>
 					<div ng-show="sa" class="wrap search1">
 						<div class="search">
-							<input type="text" class="searchTerm" ng-model="area" placeholder="Input zipcode or city to acquire price history">
+							<input type="text" class="searchTerm" ng-model="area" ng-keyup="$event.keyCode == 13 ? searchAve() : null" placeholder="Input zipcode or city to acquire price history">
 							<button type="submit" class="searchButton" ng-click="searchAve()">
 								<i class="fa fa-search"></i>
 							</button>
@@ -95,8 +95,8 @@
 					</div>
 
 					<div ng-show="ss" class="search2">
-						<input type="text" class="street" ng-model="address" placeholder="Street Address">
-						<input type="text" class="city" ng-model="city" placeholder="City">
+						<input type="text" class="street" ng-keyup="$event.keyCode == 13 ? searchSpec() : null" ng-model="address" placeholder="Street Address">
+						<input type="text" class="city" ng-keyup="$event.keyCode == 13 ? searchSpec() : null" ng-model="city" placeholder="City">
 						<select class="state"
 								ng-options="state as state.abbreviation for state in states"
 								ng-model="state">
