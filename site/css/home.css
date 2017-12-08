@@ -159,6 +159,24 @@ h2 span:before {
     font-size: 20px;
 }
 
+.search1 {
+    width: 50%;
+}
+
+.search2 {
+    width: 50%;
+}
+
+@media only screen and (max-width: 800px) {
+    .search1 {
+        width: 80%;
+    }
+
+    .search2 {
+        width: 80%;
+    }
+}
+
 /*@media (max-device-aspect-ratio: 18/10) {
     .background-video {
         width: auto !important;
